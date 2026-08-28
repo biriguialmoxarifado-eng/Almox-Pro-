@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>ALMOXA PRO</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f6f8;
+      font-family: Arial, sans-serif;
+    }
+
+    .painel {
+      width: min(90%, 420px);
+      padding: 35px;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.10);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    .subtitulo {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    #indicador {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: #eee;
+      color: #555;
+      font-weight: bold;
+    }
+
+    #mensagem {
+      margin-top: 20px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="painel">
+
+    <h1>ALMOXA PRO</h1>
+
+    <div class="subtitulo">
+      Comunicação com o Core
+    </div>
+
+    <div id="indicador">
+      CONECTANDO...
+    </div>
+
+    <div id="mensagem">
+      Testando comunicação com o sistema...
+    </div>
+
+  </div>
+
+  <script>
+
+    // =====================================================
+    // ALMOXA PRO
+    // CONEXÃO COM O CORE
+    // =====================================================
+
+    const CORE_URL =
+      "https://script.google.com/macros/s/AKfycbz8M4tjRyeCjL6om5v1p6Hc8qnQCjXey6O4YxrXJLbO0EO8uOb7f0EPRXd112WyWTCH4g/exec";
+
+
+    async function conectarCore() {
+
+      const indicador = document.getElementById("indicador");
+      const mensagem = document.getElementById("mensagem");
+
+      try {
+
+        const resposta = await fetch(CORE_URL, {
+          method: "GET",
+          redirect: "follow"
+        });
+
+        if (!resposta.ok) {
+          throw new Error(
+            "Core respondeu com HTTP " + resposta.status
+          );
+        }
+
+        const texto = await resposta.text();
+
+        console.log("Resposta recebida do Core:", texto);
+
+        indicador.textContent = "CORE ONLINE";
+        mensagem.textContent =
+          "Comunicação estabelecida com sucesso.";
+
+      } catch (erro) {
+
+        console.error("Erro na comunicação com o Core:", erro);
+
+        indicador.textContent = "CORE OFFLINE";
+        mensagem.textContent =
+          "Não foi possível confirmar a comunicação.";
+
+      }
+
+    }
+
+
+    // Inicia o teste automaticamente
+    conectarCore();
+
+  </script>
+
+</body>
+</html>

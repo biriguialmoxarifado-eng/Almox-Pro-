@@ -2,16 +2,32 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ALMOXA PRO - TESTE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALMOXA PRO</title>
 </head>
 
 <body>
 
   <h1>ALMOXA PRO</h1>
 
-  <p>TESTE DO FRONT-END</p>
+  <p id="status">Conectando ao Core...</p>
 
-  <p>Se você está vendo esta mensagem, o GitHub está funcionando.</p>
+  <script>
+    const CORE_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+    fetch(CORE_URL)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("status").innerText =
+          "Core conectado ✔";
+        console.log("Resposta do Core:", data);
+      })
+      .catch(error => {
+        document.getElementById("status").innerText =
+          "Erro ao conectar ao Core ✖";
+        console.error(error);
+      });
+  </script>
 
 </body>
 </html>

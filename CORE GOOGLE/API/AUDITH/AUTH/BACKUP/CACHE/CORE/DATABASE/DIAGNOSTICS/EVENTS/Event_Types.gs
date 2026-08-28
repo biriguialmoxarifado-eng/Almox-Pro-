@@ -1,0 +1,27 @@
+/**
+ * ============================================================
+ * ALMOXA PRO — Event_Types.gs  (CAMADA 4)
+ * Catálogo fixo de eventos do sistema (seção 42). Módulos não
+ * devem "inventar" nome de evento solto — usam esta lista.
+ * ============================================================
+ */
+
+const EVENT_TYPES = Object.freeze({
+  NF_RECEBIDA: 'NF_RECEBIDA',
+  NF_CONFERIDA: 'NF_CONFERIDA',
+  NF_DIVERGENCIA: 'NF_DIVERGENCIA',
+  NF_APROVADA: 'NF_APROVADA',
+  ESTOQUE_ENTRADA: 'ESTOQUE_ENTRADA',
+  ESTOQUE_SAIDA: 'ESTOQUE_SAIDA',
+  RESERVA_CRIADA: 'RESERVA_CRIADA',
+  RESERVA_APROVADA: 'RESERVA_APROVADA',
+  RESERVA_EXPIRADA: 'RESERVA_EXPIRADA',
+  INVENTARIO_ABERTO: 'INVENTARIO_ABERTO',
+  INVENTARIO_FINALIZADO: 'INVENTARIO_FINALIZADO',
+  OCORRENCIA_CRIADA: 'OCORRENCIA_CRIADA',
+  USUARIO_LOGIN: 'USUARIO_LOGIN',
+  USUARIO_LOGOUT: 'USUARIO_LOGOUT',
+  BIOMETRIA_VALIDADA: 'BIOMETRIA_VALIDADA',
+  BACKUP_REALIZADO: 'BACKUP_REALIZADO',
+  ERRO_SISTEMA: 'ERRO_SISTEMA'
+});
